@@ -9,7 +9,8 @@ This will be used often in further projects as in "statistics" or "multi layer p
 ### Iterasure a closures for iterators
 
 
-`function arr ( pI_size, pFct_fct = cst ( 0 ), pA_dst = [ ] ) {
+```
+function arr ( pI_size, pFct_fct = cst ( 0 ), pA_dst = [ ] ) {
 
 	for ( var i = 0; i < pI_size; ++ i )
 
@@ -74,18 +75,4 @@ function cum ( pFct_fct, pA_src, s = 0 ) {
 
 	return s;
 }
-`
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/samuelohterion/codings/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
-
-
-
-
+```
