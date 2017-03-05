@@ -64,17 +64,6 @@ function cum ( pFct_fct, pA_src, s = 0 ) {
 	return s;
 }
 
-function cum ( pFct_fct, pA_src, s = 0 ) {
-
-	var
-	i = -1;
-
-	while ( ++ i < pA_src.length )
-
-		s = pFct_fct( s, pA_src[ i ] );
-
-	return s;
-}
 
 // some useful functions
 

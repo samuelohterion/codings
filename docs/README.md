@@ -1,30 +1,80 @@
-## Welcome to GitHub Pages
+## Welcome to my Project-Page
 
-You can use the [editor on GitHub](https://github.com/samuelohterion/codings/edit/gh-pages/README.md) to maintain and preview the content for your website in Markdown files.
+Here i present to you a small collection of my javascript codings
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# The Iterasure - Project
 
-### Markdown
+This will be used often in further projects as in "statistics" or "multi layer perceptron".
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Iterasure a closures for iterators
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+`function arr ( pI_size, pFct_fct = cst ( 0 ), pA_dst = [ ] ) {
 
-- Bulleted
-- List
+	for ( var i = 0; i < pI_size; ++ i )
 
-1. Numbered
-2. List
+		pA_dst[ i ] = pFct_fct ( i );
 
-**Bold** and _Italic_ and `Code` text
+	return pA_dst;
+}
 
-[Link](url) and ![Image](src)
-```
+function seq ( pI_begin, pI_end, pFct_fct = add ( 0 ), pA_dst = [ ] ) {
+
+	for ( var i = pI_begin; i < pI_end; ++ i )
+
+		pA_dst[ i - pI_begin ] = pFct_fct ( i );
+
+	return pA_dst;
+}
+
+function fun ( pFct_fct, pA_src, pA_dst = [ ] ) {
+
+	for ( var i = 0; i < pA_src.length; ++ i )
+
+		pA_dst[ i ] = pFct_fct ( pA_src[ i ] );
+
+	return pA_dst;
+}
+
+function rel ( pFct_fct, pA_src1, pA_src2, pA_dst = [ ] ) {
+
+	if ( pA_src1 instanceof Array && pA_src2 instanceof Array ) {
+
+		for ( var i = 0; i < pA_src1.length; ++ i )
+
+			pA_dst[ i ] = pFct_fct( pA_src1[ i ], pA_src2[ i ] );
+
+		return pA_dst;
+	}
+
+	if ( pA_src1 instanceof Array ) {
+
+		for ( var i = 0; i < pA_src1.length; ++ i )
+
+			pA_dst[ i ] = pFct_fct( pA_src1[ i ], pA_src2 );
+
+		return pA_dst;
+	}
+
+	for ( var i = 0; i < pA_src1.length; ++ i )
+
+		pA_dst[ i ] = pFct_fct( pA_src1, pA_src2[ i ] );
+
+	return pA_dst;
+}
+
+function cum ( pFct_fct, pA_src, s = 0 ) {
+
+	var
+	i = -1;
+
+	while ( ++ i < pA_src.length )
+
+		s = pFct_fct( s, pA_src[ i ] );
+
+	return s;
+}
+`
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
@@ -35,3 +85,7 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 ### Support or Contact
 
 Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
+
+
+
