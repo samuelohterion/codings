@@ -1,4 +1,4 @@
-// depends on iterasures.js 
+// depends on iterasures.js
 
 function rng ( pI_min, pI_max ) {
 
@@ -36,4 +36,12 @@ function sigma ( x, p ) {
 	return Math.sqrt ( variance ( x, p ) );
 }
 
+function prob ( q, p ) {
 
+	return cum ( rAdd, fun ( rng ( -Infinity, q ), fun ( int( ), p ) ) );
+}
+
+function quantile ( q, x, p ) {
+
+	return x[ prob ( q, p ) ];
+}

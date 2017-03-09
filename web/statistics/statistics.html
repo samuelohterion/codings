@@ -6,7 +6,6 @@
 		</title>
 		<link rel="stylesheet" type="text/css" href="statistics.css">
 		<script src="../js.tool.box/iterasures.js" type="text/javascript"></script>
-		<script src="../js.tool.box/iterasures.js" type="text/javascript"></script>
 		<script src="../js.tool.box/statistics.js" type="text/javascript"></script>
 	</head>
 	<body>
@@ -20,8 +19,8 @@
 			function pr ( p_text ) { console.log ( p_text ); }
 
 			var
-			dx  = .1,
-			x   = seq ( -100, +101, pol ( [ 0, dx ] ) );
+			dx  = .01,
+			x   = seq ( -10000, +10001, pol ( [ 0, dx ] ) );
 			p   = fun ( pnorm ( 1, 2, dx ), x ),
 			d   = fun ( dnorm ( 1, 2 ), x );
 
@@ -69,37 +68,25 @@
 			pr ( cum ( rAdd, p ) );
 			pr ( cum ( rAdd, d ) );
 
-			var
-			i = fun ( int( ), p );
+			for ( var i = 0; i < 10; ++ i ) {
 
-			pr ( x[ cum ( rAdd, fun ( rng ( -Infinity, .1 ), i ) ) ] );
-			pr ( x[ cum ( rAdd, fun ( rng ( -Infinity, .9 ), i ) ) ] );
-			pr ( -x[ cum ( rAdd, fun ( rng ( -Infinity, .1 ), i ) ) ] + x[ cum ( rAdd, fun ( rng ( -Infinity, .9 ), i ) ) ] );
-			pr ( +x[ cum ( rAdd, fun ( rng ( -Infinity, .1 ), i ) ) ] - x[ cum ( rAdd, fun ( rng ( -Infinity, .9 ), i ) ) ] );
+				var
+				d = Math.pow ( 10, -i );
 
-			pr ( x[ cum ( rAdd, fun ( rng ( -Infinity, .025 ), i ) ) ] );
-			pr ( x[ cum ( rAdd, fun ( rng ( -Infinity, .975 ), i ) ) ] );
-			pr ( -x[ cum ( rAdd, fun ( rng ( -Infinity, .025 ), i ) ) ] + x[ cum ( rAdd, fun ( rng ( -Infinity, .975 ), i ) ) ] );
+				pr ( quantile ( d, x, p ) );
+				pr ( quantile ( 1 - d, x, p ) );
+				pr ( quantile ( 1 - d, x, p ) - quantile ( d, x, p ) );
+			}
 
-			pr ( x[ cum ( rAdd, fun ( rng ( -Infinity, .01 ), i ) ) ] );
-			pr ( x[ cum ( rAdd, fun ( rng ( -Infinity, .99 ), i ) ) ] );
-			pr ( -x[ cum ( rAdd, fun ( rng ( -Infinity, .01 ), i ) ) ] + x[ cum ( rAdd, fun ( rng ( -Infinity, .99 ), i ) ) ] );
+			for ( var i = 0; i < 10; ++ i ) {
 
-			pr ( x[ cum ( rAdd, fun ( rng ( -Infinity, .001 ), i ) ) ] );
-			pr ( x[ cum ( rAdd, fun ( rng ( -Infinity, .999 ), i ) ) ] );
-			pr ( -x[ cum ( rAdd, fun ( rng ( -Infinity, .001 ), i ) ) ] + x[ cum ( rAdd, fun ( rng ( -Infinity, .999 ), i ) ) ] );
+				var
+				d = Math.pow ( 10, -i );
 
-			pr ( z[ cum ( rAdd, fun ( rng ( -Infinity, .025 ), i ) ) ] );
-			pr ( z[ cum ( rAdd, fun ( rng ( -Infinity, .975 ), i ) ) ] );
-			pr ( -z[ cum ( rAdd, fun ( rng ( -Infinity, .025 ), i ) ) ] + z[ cum ( rAdd, fun ( rng ( -Infinity, .975 ), i ) ) ] );
-
-			pr ( z[ cum ( rAdd, fun ( rng ( -Infinity, .01 ), i ) ) ] );
-			pr ( z[ cum ( rAdd, fun ( rng ( -Infinity, .99 ), i ) ) ] );
-			pr ( -z[ cum ( rAdd, fun ( rng ( -Infinity, .01 ), i ) ) ] + z[ cum ( rAdd, fun ( rng ( -Infinity, .99 ), i ) ) ] );
-
-			pr ( z[ cum ( rAdd, fun ( rng ( -Infinity, .001 ), i ) ) ] );
-			pr ( z[ cum ( rAdd, fun ( rng ( -Infinity, .999 ), i ) ) ] );
-			pr ( -z[ cum ( rAdd, fun ( rng ( -Infinity, .001 ), i ) ) ] + z[ cum ( rAdd, fun ( rng ( -Infinity, .999 ), i ) ) ] );
+				pr ( quantile ( d, z, p ) );
+				pr ( quantile ( 1 - d, z, p ) );
+				pr ( quantile ( 1 - d, z, p ) - quantile ( d, z, p ) );
+			}
 
 		</script>
 

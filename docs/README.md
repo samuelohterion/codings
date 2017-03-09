@@ -82,4 +82,5 @@ You can use these little functions this ways:
 var
 a = arr( 5 ), // a = [ 0, 0, 0, 0, 0 ]
 b = arr( 5, cst( 1 ) ); // b = [ 1, 1, 1, 1, 1 ]
+
 ```

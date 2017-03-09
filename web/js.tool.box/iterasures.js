@@ -1,17 +1,8 @@
-function arr ( pI_size, pFct_fct = cst ( 0 ), pA_dst = [ ] ) {
-
-	for ( var i = 0; i < pI_size; ++ i )
-
-		pA_dst[ i ] = pFct_fct ( i );
-
-	return pA_dst;
-}
-
 function seq ( pI_begin, pI_end, pFct_fct = add ( 0 ), pA_dst = [ ] ) {
 
 	for ( var i = pI_begin; i < pI_end; ++ i )
 
-		pA_dst[ i - pI_begin ] = pFct_fct ( i );
+		pA_dst[ i - pI_begin ] = pFct_fct instanceof Function ? pFct_fct ( i ) : pFct_fct;
 
 	return pA_dst;
 }
@@ -66,6 +57,11 @@ function cum ( pFct_fct, pA_src, s = 0 ) {
 
 
 // some useful functions
+
+function arr ( pI_size, pFct_fct = cst ( 0 ), pA_dst = [ ] ) {
+
+	return seq ( 0, p_size, pFct_fct, pA_dst );
+}
 
 function cst ( p_val ) {
 
