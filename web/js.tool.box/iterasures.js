@@ -1,4 +1,4 @@
-function seq ( pI_begin, pI_end, pFct_fct = add ( 0 ), pA_dst = [ ] ) {
+function seq ( pFct_fct, pI_begin, pI_end, pA_dst = [ ] ) {
 
 	for ( var i = pI_begin; i < pI_end; ++ i )
 
@@ -73,7 +73,7 @@ function iof ( pFct_fct, pA_src, s = 0 ) {
 
 function arr ( pI_size, pFct_fct = cst ( 0 ), pA_dst = [ ] ) {
 
-	return seq ( 0, pI_size, pFct_fct, pA_dst );
+	return seq ( pFct_fct, 0, pI_size, pA_dst );
 }
 
 function cst ( p_val ) {

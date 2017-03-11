@@ -25,6 +25,11 @@ Plot2d = function ( cnvs_name ) {
 		this.ymax = rMax ( this.ymax, ymax );
 	}
 
+	this.text = function ( txt, x, y ) {
+
+		this.cntxt.fillText( txt, x, y );
+	}
+
 	this.grid = function ( ) {
 
 		var
@@ -73,7 +78,7 @@ Plot2d = function ( cnvs_name ) {
 			this.cntxt.moveTo ( 0, this.cnvs.height - 1 + dy * y );
 			this.cntxt.lineTo ( this.cnvs.width, this.cnvs.height - 1 + dy * y );
 			this.cntxt.stroke ( );
-			this.cntxt.fillText ( ( -y + this.ymin ).toExponential( 1 ).toString ( ), 1, this.cnvs.height - 1 + dy * y - 1 );
+			this.text ( ( -y + this.ymin ).toExponential( 1 ).toString ( ), 1, this.cnvs.height - 1 + dy * y - 1 );
 			y += dy_;
 		}
 
@@ -91,7 +96,7 @@ Plot2d = function ( cnvs_name ) {
 
 	}
 
-	this.draw = function ( y = seq ( -10, 11, pol ( [ +1, -1, +1, -1, +1, -1 ] ) ) , x = seq ( 0, 21, pol ( [ 0, 1. ] ) ) ) {
+	this.addYX = function ( y = seq ( -10, 11, pol ( [ +1, -1, +1, -1, +1, -1 ] ) ) , x = seq ( 0, 21, pol ( [ 0, 1. ] ) ) ) {
 
 		this.drws.push ( [ y, x ] );
 		this.clrs.push ( this.clr );
@@ -99,7 +104,7 @@ Plot2d = function ( cnvs_name ) {
 		this.dmnsns ( cum ( rMin, x, +Infinity ), cum ( rMin, y, +Infinity ), cum ( rMax, x, -Infinity ), cum ( rMax, y, -Infinity ) );
 	}
 
-	this.show = function ( ) {
+	this.draw = function ( ) {
 
 		var
 		dx   = ( this.cnvs.width - 1 ) / ( this.xmax - this.xmin ),
@@ -124,12 +129,5 @@ Plot2d = function ( cnvs_name ) {
 
 			this.cntxt.stroke ( );
 		}
-	}
-
-
-
-	this.text = function ( txt, x, y ) {
-
-		this.cntxt.fillText( txt, x, y );
 	}
 }
