@@ -1,13 +1,16 @@
 ## CODINGS
 
-Here i present to you a small collection of my javascript packages
+a small collection of maybe useful javascript packages
 
-# The Iterasure - Project
-
-This will be used often in further packages as in "statistics" or "multi layer perceptron" or "plot2d".
-
-### iterasure as closures for iterators on arrays
-## five commands to handle arrays
+# The Iterasure - Package
+iterasures.js
+```
+<script src="https://github.com/samuelohterion/codings/tree/master/web/js.tool.box/iterasures.js" type="text/javascript">
+</script>
+```
+this often will be used in further packages as e.g. "statistics" or "multi layer perceptron" or "plot2d".
+# iterasure as closures for iterators on arrays
+### five commands to handle arrays
 ```
 seq ( pUnaryFct_fct, pI_begin, pI_end, pA_dst = [ ] );
 fun ( pUnaryFct_fct, pA_src, pA_dst = [ ] );
@@ -15,11 +18,16 @@ rel ( pBinaryFct_fct, pA_src1, pA_src2, pA_dst = [ ] );
 cum ( pUnaryFct_fct, pA_src, s = 0 );
 iof ( pUnaryFct_fct, pA_src, s = 0 );
 ```
+the power of these 5 little foo bars comes with the also small collection of helper functions and the opportunity to write small closures by yourself.
+## the only helper function "arr"
+```
+arr ( pI_size, pUnaryFct_fct = cst ( 0 ), pA_dst = [ ] );
+```
+this is just a wrapper for
+```
+seq	 ( pUnaryFct_fct, pI_begin, pI_end, pA_dst = [ ] );
+```
 ## helper closures
-### for creating an array
-```
-arr ( pI_size, pFct_fct = cst ( 0 ), pA_dst = [ ] );
-```
 ### for creating an array of constant values
 ```
 cst ( p_val );
