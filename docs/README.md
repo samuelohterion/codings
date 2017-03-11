@@ -16,6 +16,7 @@ cum ( pFct_fct, pA_src, s = 0 );
 iof ( pFct_fct, pA_src, s = 0 );
 ```
 ## helper closures
+```
 arr ( pI_size, pFct_fct = cst ( 0 ), pA_dst = [ ] );
 cst ( p_val );
 add ( p_val );
@@ -33,7 +34,7 @@ rSub ( a, b );
 rMul ( a, b );
 rDiv ( a, b );
 rPow ( a, b );
-
+```
 ## how to use these
 You can use these little functions this way:
 ```
