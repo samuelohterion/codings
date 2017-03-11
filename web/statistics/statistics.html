@@ -6,6 +6,7 @@
 		</title>
 		<link rel="stylesheet" type="text/css" href="statistics.css">
 		<script src="../js.tool.box/iterasures.js" type="text/javascript"></script>
+		<script src="../js.tool.box/plot2d.js" type="text/javascript"></script>
 		<script src="../js.tool.box/statistics.js" type="text/javascript"></script>
 	</head>
 	<body>
@@ -14,32 +15,84 @@
 			open javascript console and watch the results!
 		</p>
 
+		<canvas id="cnvs1">
+			no html 5 supported
+		</canvas>
+
 		<script type="text/javascript">
 
 			function pr ( p_text ) { console.log ( p_text ); }
 
 			var
-			dx  = .01,
-			x   = seq ( -10000, +10001, pol ( [ 0, dx ] ) );
-			p   = fun ( pnorm ( 1, 2, dx ), x ),
-			d   = fun ( dnorm ( 1, 2 ), x );
+			dx    = .01,
+			x     = seq ( -1330, +1201, pol ( [ 0, dx ] ) ),
+			prob1_dot = fun ( pnrm ( -5, Math.sqrt ( .5 / Math.PI ) ), x ),
+			prob1     = fun ( intg( dx ), prob1_dot );
+			prob2_dot = fun ( pnrm ( 0, 1 ), x ),
+			prob2     = fun ( intg( dx ), prob2_dot ),
+			prob3_dot = fun ( pnrm ( +5, 2 ), x ),
+			prob3     = fun ( intg( dx ), prob3_dot );
 
-			pr ( cum ( rAdd, p ) );
-			pr ( expVal ( x, p ) );
-			pr ( variance ( x, p ) );
-			pr ( sigma ( x, p ) );
+			pr ( cum ( rMin, prob1_dot ) );
+			pr ( cum ( rMax, prob1_dot ) );
+			pr ( cum ( rAdd, prob1_dot ) );
+			pr ( xpct ( x, prob1_dot ) );
+			pr ( vrnc ( x, prob1_dot ) );
+			pr ( sgm (  x, prob1_dot ) );
+			pr ( iof ( rMin, prob1_dot ) );
+			pr ( iof ( rMax, prob1_dot ) );
 
-			pr ( dx * cum ( rAdd, d ) );
-			pr ( dx * expVal ( x, d ) );
-			pr ( dx * variance ( x, d ) );
-			pr ( dx * sigma ( x, d ) );
+			pr ( cum ( rMin, prob1 ) );
+			pr ( cum ( rMax, prob1 ) );
+			pr ( cum ( rAdd, prob1 ) );
+			pr ( xpct ( x, prob1 ) );
+			pr ( vrnc ( x, prob1 ) );
+			pr ( sgm (  x, prob1 ) );
+			pr ( iof ( rMin, prob1 ) );
+			pr ( iof ( rMax, prob1 ) );
 
 			var
-			z = rel ( rDiv, rel ( rSub, x, expVal ( x, p ) ), sigma ( x, p ) );
+			plot2d = new Plot2d ( "cnvs1" );
 
-			pr ( expVal ( z, p ) );
-			pr ( variance ( z, p ) );
-			pr ( sigma ( z, p ) );
+			plot2d.vcol ( "#808080");
+			plot2d.draw ( fun ( pol ( [ +0, 0, 1/(2*20), 0, -1/(24*240) ] ), x ), x );
+
+			plot2d.vcol ( "#ff0000");
+			plot2d.draw ( prob1_dot, x );
+			plot2d.draw ( prob1, x );
+			plot2d.vcol ( "#00ff00");
+			plot2d.draw ( prob2_dot, x );
+			plot2d.vcol ( "#ffff00");
+			plot2d.draw ( prob2, x );
+			plot2d.vcol ( "#0000ff");
+			plot2d.draw ( prob3_dot, x );
+			plot2d.draw ( prob3, x );
+
+			plot2d.vcol ( "#000080");
+			plot2d.draw ( fun ( function ( i ) { return 5. * Math.sin ( 10 * i ) / ( 10 * i ); }, x ), x );
+
+			plot2d.vcol ( "#e0e0e0" );
+			plot2d.grid ( );
+
+			plot2d.show ( );
+
+
+			plot2d.text ( "Hello World", plot2d.cnvs.width / 2, plot2d.cnvs.height / 2 );
+
+/*			pr ( dx * cum ( rAdd, d ) );
+			pr ( cum ( rAdd, rel( rMul, d, d ) ) );
+			pr ( dx * xpct ( x, d ) );
+			pr ( dx * vrnc ( x, d ) );
+			pr ( dx * sgm ( x, d ) );
+			pr ( dx * dx * vrnc ( x, d ) );
+			pr ( dx * dx * sgm ( x, d ) );
+
+			var
+			z = rel ( rDiv, rel ( rSub, x, xpct ( x, p ) ), sgm ( x, p ) );
+
+			pr ( xpct ( z, p ) );
+			pr ( vrnc ( z, p ) );
+			pr ( sgm ( z, p ) );
 
 			pr ( cum ( rAdd, rel ( rMul, fun ( rng ( -1e12, -1 ), x ), p ) ) );
 			pr ( 1 - cum ( rAdd, rel ( rMul, fun ( rng ( -1e12, -1 ), x ), p ) ) );
@@ -73,9 +126,9 @@
 				var
 				d = Math.pow ( 10, -i );
 
-				pr ( quantile ( d, x, p ) );
-				pr ( quantile ( 1 - d, x, p ) );
-				pr ( quantile ( 1 - d, x, p ) - quantile ( d, x, p ) );
+				pr ( qntl ( d, x, p ) );
+				pr ( qntl ( 1 - d, x, p ) );
+				pr ( qntl ( 1 - d, x, p ) - qntl ( d, x, p ) );
 			}
 
 			for ( var i = 0; i < 10; ++ i ) {
@@ -83,11 +136,11 @@
 				var
 				d = Math.pow ( 10, -i );
 
-				pr ( quantile ( d, z, p ) );
-				pr ( quantile ( 1 - d, z, p ) );
-				pr ( quantile ( 1 - d, z, p ) - quantile ( d, z, p ) );
+				pr ( qntl ( d, z, p ) );
+				pr ( qntl ( 1 - d, z, p ) );
+				pr ( qntl ( 1 - d, z, p ) - qntl ( d, z, p ) );
 			}
-
+*/
 		</script>
 
 	</body>

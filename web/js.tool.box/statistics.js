@@ -8,40 +8,35 @@ function rng ( pI_min, pI_max ) {
 	}
 }
 
-function pnorm ( pD_mu = 0, pD_sigma = 1, pD_dx = 1 ) {
+function pnrm ( pD_mu = 0, pD_sigma = 1 ) {
 
 	return function ( x ) {
 
-		return pD_dx * Math.exp ( - ( x - pD_mu ) * ( x - pD_mu ) / ( 2. * pD_sigma * pD_sigma ) ) / ( Math.sqrt ( 2. * Math.PI ) * pD_sigma );
+		return Math.exp ( ( pD_mu - x ) * ( x - pD_mu ) / ( 2. * pD_sigma * pD_sigma ) ) / ( Math.sqrt ( 2. * Math.PI ) * pD_sigma );
 	}
 }
 
-function dnorm ( pD_mu = 0, pD_sigma = 1 ) {
-
-	return pnorm ( pD_mu, pD_sigma );
-}
-
-function expVal ( x, p = arr ( x.length, cst ( 1. / x.length ) ) ) {
+function xpct ( x, p = arr ( x.length, cst ( 1. / x.length ) ) ) {
 
 	return cum ( rAdd, rel ( rMul, x, p ) );
 }
 
-function variance ( x, p = arr ( x.length, cst ( 1. / x.length ) ) ) {
+function vrnc ( x, p = arr ( x.length, cst ( 1. / x.length ) ) ) {
 
-	return expVal ( fun ( sSqr, rel ( rSub, x, expVal ( x, p ) ) ), p );
+	return xpct ( fun ( sSqr, rel ( rSub, x, xpct ( x, p ) ) ), p );
 }
 
-function sigma ( x, p ) {
+function sgm ( x, p ) {
 
-	return Math.sqrt ( variance ( x, p ) );
+	return Math.sqrt ( vrnc ( x, p ) );
 }
 
-function prob ( q, p ) {
+function prb ( q, p ) {
 
 	return cum ( rAdd, fun ( rng ( -Infinity, q ), fun ( int( ), p ) ) );
 }
 
-function quantile ( q, x, p ) {
+function qntl ( q, x, p ) {
 
-	return x[ prob ( q, p ) ];
+	return x[ prb ( q, p ) ];
 }

@@ -36,7 +36,7 @@ function rel ( pFct_fct, pA_src1, pA_src2, pA_dst = [ ] ) {
 		return pA_dst;
 	}
 
-	for ( var i = 0; i < pA_src1.length; ++ i )
+	for ( var i = 0; i < pA_src2.length; ++ i )
 
 		pA_dst[ i ] = pFct_fct( pA_src1, pA_src2[ i ] );
 
@@ -55,12 +55,25 @@ function cum ( pFct_fct, pA_src, s = 0 ) {
 	return s;
 }
 
+function iof ( pFct_fct, pA_src, s = 0 ) {
+
+	var
+	i = -1;
+
+	while ( ++ i < pA_src.length )
+
+		s = pFct_fct( pA_src[ s ], pA_src[ i ] ) == pA_src[ i ] ? i : s;
+
+	return s;
+}
+
 
 // some useful functions
 
+
 function arr ( pI_size, pFct_fct = cst ( 0 ), pA_dst = [ ] ) {
 
-	return seq ( 0, p_size, pFct_fct, pA_dst );
+	return seq ( 0, pI_size, pFct_fct, pA_dst );
 }
 
 function cst ( p_val ) {
@@ -85,12 +98,12 @@ function add ( p_val ) {
 	};
 }
 
-function int ( ) {
+function intg ( dx = 1, c = 0 ) {
 
 	var
-	c = 0;
+	s = c;
 
-	return function ( i ) { return c += i; };
+	return function ( i ) { return s += dx * i; };
 }
 
 function pol ( pA_coeff ) {
@@ -124,6 +137,10 @@ function sSqr ( a ) { return a * a; }
 function sExp ( a ) { return Math.exp ( a ); }
 
 function sLog ( a ) { return Math.log ( a ); }
+
+function rMin ( a, b ) { return a < b ? a : b; }
+
+function rMax ( a, b ) { return a < b ? b : a; }
 
 function rAdd ( a, b ) { return a + b; }
 
