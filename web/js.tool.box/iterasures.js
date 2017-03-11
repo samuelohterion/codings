@@ -1,28 +1,28 @@
-function seq ( pFct_fct, pI_begin, pI_end, pA_dst = [ ] ) {
+function seq ( pUFct_fct, pI_begin, pI_end, pA_dst = [ ] ) {
 
 	for ( var i = pI_begin; i < pI_end; ++ i )
 
-		pA_dst[ i - pI_begin ] = pFct_fct instanceof Function ? pFct_fct ( i ) : pFct_fct;
+		pA_dst[ i - pI_begin ] = pUFct_fct instanceof Function ? pUFct_fct ( i ) : pFct_fct;
 
 	return pA_dst;
 }
 
-function fun ( pFct_fct, pA_src, pA_dst = [ ] ) {
+function fun ( pUFct_fct, pA_src, pA_dst = [ ] ) {
 
 	for ( var i = 0; i < pA_src.length; ++ i )
 
-		pA_dst[ i ] = pFct_fct ( pA_src[ i ] );
+		pA_dst[ i ] = pUFct_fct ( pA_src[ i ] );
 
 	return pA_dst;
 }
 
-function rel ( pFct_fct, pA_src1, pA_src2, pA_dst = [ ] ) {
+function rel ( pBFct_fct, pA_src1, pA_src2, pA_dst = [ ] ) {
 
 	if ( pA_src1 instanceof Array && pA_src2 instanceof Array ) {
 
 		for ( var i = 0; i < pA_src1.length; ++ i )
 
-			pA_dst[ i ] = pFct_fct( pA_src1[ i ], pA_src2[ i ] );
+			pA_dst[ i ] = pBFct_fct( pA_src1[ i ], pA_src2[ i ] );
 
 		return pA_dst;
 	}
@@ -31,38 +31,38 @@ function rel ( pFct_fct, pA_src1, pA_src2, pA_dst = [ ] ) {
 
 		for ( var i = 0; i < pA_src1.length; ++ i )
 
-			pA_dst[ i ] = pFct_fct( pA_src1[ i ], pA_src2 );
+			pA_dst[ i ] = pBFct_fct( pA_src1[ i ], pA_src2 );
 
 		return pA_dst;
 	}
 
 	for ( var i = 0; i < pA_src2.length; ++ i )
 
-		pA_dst[ i ] = pFct_fct( pA_src1, pA_src2[ i ] );
+		pA_dst[ i ] = pBFct_fct( pA_src1, pA_src2[ i ] );
 
 	return pA_dst;
 }
 
-function cum ( pFct_fct, pA_src, s = 0 ) {
+function cum ( pBFct_fct, pA_src, s = 0 ) {
 
 	var
 	i = -1;
 
 	while ( ++ i < pA_src.length )
 
-		s = pFct_fct( s, pA_src[ i ] );
+		s = pBFct_fct( s, pA_src[ i ] );
 
 	return s;
 }
 
-function iof ( pFct_fct, pA_src, s = 0 ) {
+function iof ( pBFct_fct, pA_src, s = 0 ) {
 
 	var
 	i = -1;
 
 	while ( ++ i < pA_src.length )
 
-		s = pFct_fct( pA_src[ s ], pA_src[ i ] ) == pA_src[ i ] ? i : s;
+		s = pBFct_fct( pA_src[ s ], pA_src[ i ] ) == pA_src[ i ] ? i : s;
 
 	return s;
 }
@@ -71,9 +71,9 @@ function iof ( pFct_fct, pA_src, s = 0 ) {
 // some useful functions
 
 
-function arr ( pI_size, pFct_fct = cst ( 0 ), pA_dst = [ ] ) {
+function arr ( pI_size, pUFct_fct = cst ( 0 ), pA_dst = [ ] ) {
 
-	return seq ( pFct_fct, 0, pI_size, pA_dst );
+	return seq ( pUFct_fct, 0, pI_size, pA_dst );
 }
 
 function cst ( p_val ) {

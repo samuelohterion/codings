@@ -12,20 +12,20 @@ this often will be used in further packages as e.g. "statistics" or "multi layer
 # iterasure as closures for iterators on arrays
 ### five commands to handle arrays
 ```
-seq ( pUnaryFct_fct, pI_begin, pI_end, pA_dst = [ ] );
-fun ( pUnaryFct_fct, pA_src, pA_dst = [ ] );
-rel ( pBinaryFct_fct, pA_src1, pA_src2, pA_dst = [ ] );
-cum ( pUnaryFct_fct, pA_src, s = 0 );
-iof ( pUnaryFct_fct, pA_src, s = 0 );
+seq ( pUFct_fct, pI_begin, pI_end, pA_dst = [ ] );
+fun ( pUFct_fct, pA_src, pA_dst = [ ] );
+rel ( pBFct_fct, pA_src1, pA_src2, pA_dst = [ ] );
+cum ( pBFct_fct, pA_src, s = 0 );
+iof ( pBFct_fct, pA_src, s = 0 );
 ```
 the power of these 5 little foo bars comes with the also small collection of helper functions and the opportunity to write small closures by yourself.
 ## the only helper function "arr"
 ```
-arr ( pI_size, pUnaryFct_fct = cst ( 0 ), pA_dst = [ ] );
+arr ( pI_size, pUFct_fct = cst ( 0 ), pA_dst = [ ] );
 ```
 this is just a wrapper for
 ```
-seq	 ( pUnaryFct_fct, pI_begin, pI_end, pA_dst = [ ] );
+seq ( pUFct_fct, pI_begin, pI_end, pA_dst = [ ] );
 ```
 ## helper closures
 ### for creating an array of constant values
@@ -37,7 +37,7 @@ this is a way to create an array with values computed by y = i * p_val
 where i goes from 0 to pI_size
 ```
 add ( p_val );
-```
+
 
 intg ( dx = 1, c = 0 );
 pol ( pA_coeff );
