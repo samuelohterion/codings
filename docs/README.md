@@ -8,6 +8,7 @@ iterasures.js
 <script src="https://github.com/samuelohterion/codings/tree/master/web/js.tool.box/iterasures.js" type="text/javascript">
 </script>
 ```
+[ github ]("https://github.com/samuelohterion/codings/tree/master/web/js.tool.box/iterasures.js")
 this often will be used in further packages as e.g. "statistics" or "multi layer perceptron" or "plot2d".
 # iterasure as closures for iterators on arrays
 ### five commands to handle arrays
@@ -25,22 +26,40 @@ arr ( pI_size, pUFct_fct = cst ( 0 ), pA_dst = [ ] );
 ```
 this is just a wrapper for
 ```
-seq ( pUFct_fct, pI_begin, pI_end, pA_dst = [ ] );
+seq ( pUFct_fct = cst ( 0 ), pI_begin = 0, pI_end = pI_size, pA_dst = [ ] );
 ```
+use it like
+
+
 ## helper closures
 ### for creating an array of constant values
+- this is a way to create an array with values computed by
+- y = p_val
 ```
 cst ( p_val );
 ```
-### for creating an array of increasing values
-this is a way to create an array with values computed by y = i * p_val
-where i goes from 0 to pI_size
+### for creating an array of in- or decreasing values
+- this is a way to create an array with values computed by
+- y = i * p_val
 ```
 add ( p_val );
+```
+- where i goes from 0 to pI_size
+- of coures if with p_val < 0 the sequence will decrease
+- actually cst ( p_n ) and add ( p_m ) is a short hand for the much more powerful "pol"-ynomial closure.
+- cst ( p_n ) abbreviates pol ( [ p_n ] )
+- add ( p_m ) abbreviates pol ( [ 0, p_m ] )
 
-
-intg ( dx = 1, c = 0 );
+### for creating an array of values computed by a polynomial
+```
 pol ( pA_coeff );
+```
+- as seen before u can create a linear sequence compute a polynomial on it to create an array
+- here pA_coeff is an array of the first n coefficients of the polynomial that should be applied
+
+### for integrating all values of an array by a certain delta X and an offset of c
+```
+intg ( dx = 1, c = 0 );
 
 
 sSet ( a );
