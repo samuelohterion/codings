@@ -10,7 +10,7 @@ iterasures.js
 </script>
 ```
 
-[ github ]("https://github.com/samuelohterion/blob/codings/tree/master/web/js.tool.box/iterasures.js")
+[ github ](https://github.com/samuelohterion/codings/blob/master/web/js.tool.box/iterasures.js)
 this often will be used in further packages as e.g. "statistics" or "multi layer perceptron" or "plot2d".
 # iterasure as closures for iterators on arrays
 ### five commands to handle arrays
@@ -102,8 +102,7 @@ rPow ( a, b );
 ## how to
 ### create an array
 
-1. by seq
-
+#### by seq
 
 ```
 var
@@ -124,8 +123,7 @@ ten_teens = seq ( add ( 10 ), 0, 10 ),
 poly2 = seq ( pol ( [ 1, -2, 1 ] ), 0, 5 );
 
 ```
-
-2. by arr
+#### by arr
 
 
 ```
@@ -145,9 +143,63 @@ ten_teens = arr ( 10, add ( 10 ) ),
 // x:      [ 0, 1, 2, 3, 4 ]
 // poly2 = [ 1, 0, 1, 4, 9 ]
 // poly2 = [ 1, 4, 9, 16, 25 ]
+
 poly2 = arr ( 5, pol ( [ 1, 2, 1 ] ) );
 ```
 
 # Examples
-## create some 3-dim vectors for
+## lets make some plots
+> the package plot2d.js will be described later
+> but it's very intuitive
+>> so let's use it here for playing with some array magic
 
+```
+<!DOCTYPE = HTML>
+<html>
+	<head>
+		<title>
+			simple plot2d
+		</title>
+		<script src="../js.tool.box/iterasures.js" type="text/javascript"></script>
+		<script src="../js.tool.box/plot2d.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="simple_plot2d.css">
+	</head>
+	<body>
+
+		<canvas id="cnvs">
+			no html 5 supported
+		</canvas>
+
+		<script type="text/javascript">
+
+			var
+			dx = .002,
+			x  = seq ( pol ( [ 0, dx ] ), -1000, +1001 ),
+			y0  = fun ( sSqr , x ),
+			y1  = fun ( pol ( [ 1, .1, .01 ] ) , x ),
+			y2  = fun ( function ( i ) { return Math.sin ( i ); }, x );
+
+			var
+			plot2d = new Plot2d ( "cnvs" );
+
+			plot2d.vcol ( "#ff0000");
+			plot2d.addYX ( y0, x );
+
+			plot2d.vcol ( "#00ff00");
+			plot2d.addYX ( y1, x );
+
+			plot2d.vcol ( "#0000ff");
+			plot2d.addYX ( y2, x );
+
+			plot2d.vcol ( "#e0e0e0" );
+			plot2d.grid ( );
+
+			plot2d.draw ( );
+
+			plot2d.text ( "SIMPLE PLOT 2D", plot2d.cnvs.width / 2, plot2d.cnvs.height / 2 );
+
+		</script>
+
+	</body>
+</html>
+```

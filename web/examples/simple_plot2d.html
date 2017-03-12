@@ -1,0 +1,48 @@
+<!DOCTYPE = HTML>
+<html>
+	<head>
+		<title>
+			simple plot2d
+		</title>
+		<script src="../js.tool.box/iterasures.js" type="text/javascript"></script>
+		<script src="../js.tool.box/plot2d.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="simple_plot2d.css">
+	</head>
+	<body>
+
+		<canvas id="cnvs">
+			no html 5 supported
+		</canvas>
+
+		<script type="text/javascript">
+
+			var
+			dx = .002,
+			x  = seq ( pol ( [ 0, dx ] ), -1000, +1001 ),
+			y0  = fun ( sSqr , x ),
+			y1  = fun ( pol ( [ 1, .1, .01 ] ) , x ),
+			y2  = fun ( function ( i ) { return Math.sin ( i ); }, x );
+
+			var
+			plot2d = new Plot2d ( "cnvs" );
+
+			plot2d.vcol ( "#ff0000");
+			plot2d.addYX ( y0, x );
+
+			plot2d.vcol ( "#00ff00");
+			plot2d.addYX ( y1, x );
+
+			plot2d.vcol ( "#0000ff");
+			plot2d.addYX ( y2, x );
+
+			plot2d.vcol ( "#e0e0e0" );
+			plot2d.grid ( );
+
+			plot2d.draw ( );
+
+			plot2d.text ( "SIMPLE PLOT 2D", plot2d.cnvs.width / 2, plot2d.cnvs.height / 2 );
+
+		</script>
+
+	</body>
+</html>
