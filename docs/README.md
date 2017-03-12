@@ -8,6 +8,7 @@ iterasures.js
 <script src="https://github.com/samuelohterion/codings/tree/master/web/js.tool.box/iterasures.js" type="text/javascript">
 </script>
 ```
+[ github ]("https://github.com/samuelohterion/codings/tree/master/web/js.tool.box/iterasures.js")
 this often will be used in further packages as e.g. "statistics" or "multi layer perceptron" or "plot2d".
 # iterasure as closures for iterators on arrays
 ### five commands to handle arrays
@@ -25,24 +26,44 @@ arr ( pI_size, pUFct_fct = cst ( 0 ), pA_dst = [ ] );
 ```
 this is just a wrapper for
 ```
-seq ( pUFct_fct, pI_begin, pI_end, pA_dst = [ ] );
+seq ( pUFct_fct = cst ( 0 ), pI_begin = 0, pI_end = pI_size, pA_dst = [ ] );
 ```
+use it like
+
+
 ## helper closures
 ### for creating an array of constant values
+- this is a way to create an array with values computed by
+- y = p_val
 ```
 cst ( p_val );
 ```
-### for creating an array of increasing values
-this is a way to create an array with values computed by y = i * p_val
-where i goes from 0 to pI_size
+### for creating an array of in- or decreasing values
+- this is a way to create an array with values computed by
+- y = i * p_val
 ```
 add ( p_val );
+```
+- where i goes from 0 to pI_size
+- of coures if with p_val < 0 the sequence will decrease
+- actually cst ( p_n ) and add ( p_m ) are short hands for the much more powerful "pol"-ynomial closure.
+- cst ( p_n ) abbreviates pol ( [ p_n ] )
+- add ( p_m ) abbreviates pol ( [ 0, p_m ] )
 
-
-intg ( dx = 1, c = 0 );
+### for creating an array of values computed by a polynomial
+```
 pol ( pA_coeff );
+```
+- as seen before u can create a linear sequence compute a polynomial on it to create an array
+- here pA_coeff is an array of the first n coefficients of the polynomial that should be applied
 
+### for integrating all values of an array by a certain delta X and an offset of c
+```
+intg ( dx = 1, c = 0 );
+```
+### for essential computings
 
+```
 sSet ( a );
 sSqt ( a );
 sSqr ( a );
@@ -65,14 +86,21 @@ rPow ( a, b );
 
 ```
 var
-zeros = seq ( cst ( 0 ), 5 ),
-// zeros    = [ 0, 0, 0, 0, 0 ]
+// five_zeros = [ 0, 0, 0, 0, 0 ]
+five_zeros = seq ( cst ( 0 ), 0, 5 ),
 
-ones = seq ( cst ( 1 ), 5 );
-// ones     = [ 1, 1, 1, 1, 1 ]
+// four_ones = [ 1, 1, 1, 1 ]
+four_ones = seq ( cst ( 1 ), 0, 4 );
 
-yEqualsXPlusTen = arr( add( 10 ), 5 );
-// yEqualsXPlusTen = [ 10, 11, 12, 13, 14 ]
+// teens = [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+ten_teens = seq ( add ( 10 ), 0, 10 ),
+
+// y = ( x - a ) * ( x - b )
+// y = ab - ( a + b ) * x + x * x
+// a = b = 1
+// x:      [ 0, 1, 2, 3, 4 ]
+// poly2 = [ 1, 0, 1, 4, 9 ]
+poly2 = seq ( pol ( [ 1, -2, 1 ] ), 0, 5 );
 
 ```
 
@@ -81,13 +109,28 @@ yEqualsXPlusTen = arr( add( 10 ), 5 );
 
 ```
 var
-// zeros = [ 0, 0, 0, 0, 0 ]
-zeros    = arr ( 5 ),
-// ones = [ 1, 1, 1, 1, 1 ]
-ones     = arr( 5, cst( 1 ) );
-// yEqualsX = [ 10, 11, 12, 13, 14 ]
-yEqualsX = arr( 5, add( 10 ) );
+// five_zeros = [ 0, 0, 0, 0, 0 ]
+five_zeros = arr ( 5 ),
 
+<<<<<<< HEAD
 ```
 
 ###
+=======
+// four_ones = [ 1, 1, 1, 1 ]
+four_ones = arr( 4, cst ( 1 ) );
+
+// teens = [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+ten_teens = arr ( 10, add ( 10 ) ),
+
+// y = ( x - a ) * ( x - b )
+// y = ab - ( a + b ) * x + x * x
+// a = b = -1
+// x:      [ 0, 1, 2, 3, 4 ]
+// poly2 = [ 1, 0, 1, 4, 9 ]
+// poly2 = [ 1, 4, 9, 16, 25 ]
+poly2 = arr ( 5, pol ( [ 1, 2, 1 ] ) );
+```
+# Examples
+## create some 3-dim vectors for 
+>>>>>>> 84467a1b62b06f0d5dd22844dc5fd77142cd8012
