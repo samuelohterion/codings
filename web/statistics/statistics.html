@@ -25,7 +25,7 @@
 
 			var
 			dx    = .01,
-			x     = seq ( -1330, +1201, pol ( [ 0, dx ] ) ),
+			x     = seq ( pol ( [ 0, dx ] ), -1330, +1201 ),
 			prob1_dot = fun ( pnrm ( -5, Math.sqrt ( .5 / Math.PI ) ), x ),
 			prob1     = fun ( intg( dx ), prob1_dot );
 			prob2_dot = fun ( pnrm ( 0, 1 ), x ),

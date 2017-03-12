@@ -56,9 +56,13 @@ rMul ( a, b );
 rDiv ( a, b );
 rPow ( a, b );
 ```
+
 ## how to
 ### create an array
+
 1. by seq
+
+
 ```
 var
 zeros = seq ( cst ( 0 ), 5 ),
@@ -71,7 +75,9 @@ yEqualsXPlusTen = arr( add( 10 ), 5 );
 // yEqualsXPlusTen = [ 10, 11, 12, 13, 14 ]
 
 ```
+
 2. by arr
+
 
 ```
 var
@@ -83,4 +89,5 @@ ones     = arr( 5, cst( 1 ) );
 yEqualsX = arr( 5, add( 10 ) );
 
 ```
+
 ###

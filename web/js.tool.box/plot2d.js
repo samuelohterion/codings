@@ -96,7 +96,7 @@ Plot2d = function ( cnvs_name ) {
 
 	}
 
-	this.addYX = function ( y = seq ( -10, 11, pol ( [ +1, -1, +1, -1, +1, -1 ] ) ) , x = seq ( 0, 21, pol ( [ 0, 1. ] ) ) ) {
+	this.addYX = function ( y = seq ( pol ( [ +1, -1, +1, -1, +1, -1 ] ), -10, 11 ) , x = seq ( pol ( [ 0, 1. ] ), 0, 21 ) ) {
 
 		this.drws.push ( [ y, x ] );
 		this.clrs.push ( this.clr );
