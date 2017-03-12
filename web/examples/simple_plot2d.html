@@ -11,17 +11,24 @@
 	<body>
 
 		<canvas id="cnvs">
-			no html 5 supported
+				no html 5 supported
 		</canvas>
+
+		<p id="out">
+			max Y1
+		</p>
 
 		<script type="text/javascript">
 
 			var
-			dx = .002,
+			dx = 1 / 500.,
 			x  = seq ( pol ( [ 0, dx ] ), -1000, +1001 ),
-			y0  = fun ( sSqr , x ),
-			y1  = fun ( pol ( [ 1, .1, .01 ] ) , x ),
-			y2  = fun ( function ( i ) { return Math.sin ( i ); }, x );
+			y0  = rel ( rSub, fun ( sSqr, x ), 1 ),
+			//( x-a)(x-b)(x-c)=x*x*x-(a+b+c)*x*x+(ab+ac+bc)*x-abc
+			//a=-1, b=0; c=1
+			//1x^3-0x^2-1x-0
+			y1  = fun ( pol ( [ 0, +1, 0, -1 ] ) , x ),
+			y2  = fun ( function ( i ) { return .25 * Math.sin ( 10*Math.PI * i ) / ( i ); }, x );
 
 			var
 			plot2d = new Plot2d ( "cnvs" );
@@ -35,13 +42,25 @@
 			plot2d.vcol ( "#0000ff");
 			plot2d.addYX ( y2, x );
 
-			plot2d.vcol ( "#e0e0e0" );
+			plot2d.vcol ( "#1e1e1e" );
 			plot2d.grid ( );
 
 			plot2d.draw ( );
 
 			plot2d.text ( "SIMPLE PLOT 2D", plot2d.cnvs.width / 2, plot2d.cnvs.height / 2 );
 
+			var
+			maxY0 = cum ( rMax, y0 ),
+			maxY1 = cum ( rMax, y1 ),
+			maxY2 = cum ( rMax, y2 ),
+			xOfMaxY0 = x [ iof ( rMax, y0 ) ],
+			xOfMaxY1 = x [ iof ( rMax, y1 ) ],
+			xOfMaxY2 = x [ iof ( rMax, y2 ) ];
+
+			document.getElementById ( "out" ).innerHTML =
+			" ( x0, y0 ) : ( " + xOfMaxY0.toFixed( 2 ) + ", " + maxY0.toFixed( 2 )+ " )<br>" +
+			" ( x1, y1 ) : ( " + xOfMaxY1.toFixed( 2 ) + ", " + maxY1.toFixed( 2 ) + " )<br>" +
+			" ( x2, y2 ) : ( " + xOfMaxY2.toFixed( 2 ) + ", " + maxY2.toFixed( 2 ) + " )";
 		</script>
 
 	</body>

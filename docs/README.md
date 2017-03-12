@@ -149,25 +149,33 @@ poly2 = arr ( 5, pol ( [ 1, 2, 1 ] ) );
 
 # Examples
 ## lets make some plots
-> the package plot2d.js will be described later
-> but it's very intuitive
->> so let's use it here for playing with some array magic
+* the package plot2d.js will be described later
+* but it's very intuitive
+* so let's use it here for playing with some array magic
 
 ```
 <!DOCTYPE = HTML>
 <html>
+
 	<head>
+
 		<title>
 			simple plot2d
 		</title>
+
 		<script src="../js.tool.box/iterasures.js" type="text/javascript"></script>
 		<script src="../js.tool.box/plot2d.js" type="text/javascript"></script>
+
 		<link rel="stylesheet" type="text/css" href="simple_plot2d.css">
+
 	</head>
+
 	<body>
 
 		<canvas id="cnvs">
+
 			no html 5 supported
+
 		</canvas>
 
 		<script type="text/javascript">
@@ -201,5 +209,6 @@ poly2 = arr ( 5, pol ( [ 1, 2, 1 ] ) );
 		</script>
 
 	</body>
+
 </html>
 ```

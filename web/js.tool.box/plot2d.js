@@ -27,6 +27,8 @@ Plot2d = function ( cnvs_name ) {
 
 	this.text = function ( txt, x, y ) {
 
+		this.cntxt.font = "16pt Calibri";
+		this.cntxt.fillStyle = "#a0a0a0";
 		this.cntxt.fillText( txt, x, y );
 	}
 
@@ -35,7 +37,7 @@ Plot2d = function ( cnvs_name ) {
 		var
 		xint = this.xmax - this.xmin,
 		yint = this.ymax - this.ymin,
-		xlog10 = parseInt ( Math.log ( xint ) / Math.log ( 10 ) - 1 ),
+		xlog10 = parseInt ( Math.log ( xint ) / Math.log ( 10 ) - 0 ),
 		ylog10 = parseInt ( Math.log ( yint ) / Math.log ( 10 ) - 1 ),
 		dx = ( this.cnvs.width - 1 ) / xint,
 		dy = ( this.cnvs.height - 1 ) / yint;
@@ -52,7 +54,7 @@ Plot2d = function ( cnvs_name ) {
 			this.cntxt.moveTo ( -dx * x, 0 );
 			this.cntxt.lineTo ( -dx * x, this.cnvs.height - 1 );
 			this.cntxt.stroke ( );
-			this.cntxt.fillText ( ( -x + this.xmin ).toExponential( 1 ).toString ( ), -dx * x + 1, this.cnvs.height - 1 );
+			this.text ( ( -x + this.xmin ).toExponential( 1 ).toString ( ), -dx * x + 1, this.cnvs.height - 1 );
 			x += dx_;
 		}
 
@@ -64,7 +66,7 @@ Plot2d = function ( cnvs_name ) {
 			this.cntxt.moveTo ( -dx * x, 0 );
 			this.cntxt.lineTo ( -dx * x, this.cnvs.height - 1 );
 			this.cntxt.stroke ( );
-			this.cntxt.fillText ( ( -x + this.xmin ).toExponential( 1 ).toString ( ), -dx * x + 1, this.cnvs.height - 1 );
+			this.text ( ( -x + this.xmin ).toExponential( 1 ).toString ( ), -dx * x + 1, this.cnvs.height - 1 );
 			x -= dx_;
 		}
 
@@ -90,7 +92,7 @@ Plot2d = function ( cnvs_name ) {
 			this.cntxt.moveTo ( 0, this.cnvs.height - 1 + dy * y );
 			this.cntxt.lineTo ( this.cnvs.width, this.cnvs.height - 1 + dy * y );
 			this.cntxt.stroke ( );
-			this.cntxt.fillText ( ( -y + this.ymin ).toExponential( 1 ).toString ( ), 1, this.cnvs.height - 1 + dy * y - 1 );
+			this.text ( ( -y + this.ymin ).toExponential( 1 ).toString ( ), 1, this.cnvs.height - 1 + dy * y - 1 );
 			y -= dy_;
 		}
 
