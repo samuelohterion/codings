@@ -46,7 +46,7 @@ add ( p_val );
 ```
 - where i goes from 0 to pI_size
 - of coures if with p_val < 0 the sequence will decrease
-- actually cst ( p_n ) and add ( p_m ) is a short hand for the much more powerful "pol"-ynomial closure.
+- actually cst ( p_n ) and add ( p_m ) are short hands for the much more powerful "pol"-ynomial closure.
 - cst ( p_n ) abbreviates pol ( [ p_n ] )
 - add ( p_m ) abbreviates pol ( [ 0, p_m ] )
 
@@ -60,8 +60,10 @@ pol ( pA_coeff );
 ### for integrating all values of an array by a certain delta X and an offset of c
 ```
 intg ( dx = 1, c = 0 );
+```
+### for essential computings
 
-
+```
 sSet ( a );
 sSqt ( a );
 sSqr ( a );
@@ -80,26 +82,43 @@ rPow ( a, b );
 1. by seq
 ```
 var
-zeros = seq ( cst ( 0 ), 5 ),
-// zeros    = [ 0, 0, 0, 0, 0 ]
+// five_zeros = [ 0, 0, 0, 0, 0 ]
+five_zeros = seq ( cst ( 0 ), 0, 5 ),
 
-ones = seq ( cst ( 1 ), 5 );
-// ones     = [ 1, 1, 1, 1, 1 ]
+// four_ones = [ 1, 1, 1, 1 ]
+four_ones = seq ( cst ( 1 ), 0, 4 );
 
-yEqualsXPlusTen = arr( add( 10 ), 5 );
-// yEqualsXPlusTen = [ 10, 11, 12, 13, 14 ]
+// teens = [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+ten_teens = seq ( add ( 10 ), 0, 10 ),
+
+// y = ( x - a ) * ( x - b )
+// y = ab - ( a + b ) * x + x * x
+// a = b = 1
+// x:      [ 0, 1, 2, 3, 4 ]
+// poly2 = [ 1, 0, 1, 4, 9 ]
+poly2 = seq ( pol ( [ 1, -2, 1 ] ), 0, 5 );
 
 ```
 2. by arr
 
 ```
 var
-// zeros = [ 0, 0, 0, 0, 0 ]
-zeros    = arr ( 5 ),
-// ones = [ 1, 1, 1, 1, 1 ]
-ones     = arr( 5, cst( 1 ) );
-// yEqualsX = [ 10, 11, 12, 13, 14 ]
-yEqualsX = arr( 5, add( 10 ) );
+// five_zeros = [ 0, 0, 0, 0, 0 ]
+five_zeros = arr ( 5 ),
 
+// four_ones = [ 1, 1, 1, 1 ]
+four_ones = arr( 4, cst ( 1 ) );
+
+// teens = [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+ten_teens = arr ( 10, add ( 10 ) ),
+
+// y = ( x - a ) * ( x - b )
+// y = ab - ( a + b ) * x + x * x
+// a = b = -1
+// x:      [ 0, 1, 2, 3, 4 ]
+// poly2 = [ 1, 0, 1, 4, 9 ]
+// poly2 = [ 1, 4, 9, 16, 25 ]
+poly2 = arr ( 5, pol ( [ 1, 2, 1 ] ) );
 ```
-###
+# Examples
+## create some 3-dim vectors for 
