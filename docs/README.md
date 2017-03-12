@@ -4,14 +4,17 @@ a small collection of maybe useful javascript packages
 
 # The Iterasure - Package
 iterasures.js
+
 ```
 <script src="https://github.com/samuelohterion/codings/tree/master/web/js.tool.box/iterasures.js" type="text/javascript">
 </script>
 ```
-[ github ]("https://github.com/samuelohterion/codings/tree/master/web/js.tool.box/iterasures.js")
+
+[ github ]("https://github.com/samuelohterion/blob/codings/tree/master/web/js.tool.box/iterasures.js")
 this often will be used in further packages as e.g. "statistics" or "multi layer perceptron" or "plot2d".
 # iterasure as closures for iterators on arrays
 ### five commands to handle arrays
+
 ```
 seq ( pUFct_fct, pI_begin, pI_end, pA_dst = [ ] );
 fun ( pUFct_fct, pA_src, pA_dst = [ ] );
@@ -19,15 +22,22 @@ rel ( pBFct_fct, pA_src1, pA_src2, pA_dst = [ ] );
 cum ( pBFct_fct, pA_src, s = 0 );
 iof ( pBFct_fct, pA_src, s = 0 );
 ```
+
 the power of these 5 little foo bars comes with the also small collection of helper functions and the opportunity to write small closures by yourself.
 ## the only helper function "arr"
+
+
 ```
 arr ( pI_size, pUFct_fct = cst ( 0 ), pA_dst = [ ] );
 ```
+
 this is just a wrapper for
+
+
 ```
 seq ( pUFct_fct = cst ( 0 ), pI_begin = 0, pI_end = pI_size, pA_dst = [ ] );
 ```
+
 use it like
 
 
@@ -35,15 +45,20 @@ use it like
 ### for creating an array of constant values
 - this is a way to create an array with values computed by
 - y = p_val
+
+
 ```
 cst ( p_val );
 ```
+
 ### for creating an array of in- or decreasing values
 - this is a way to create an array with values computed by
 - y = i * p_val
+
 ```
 add ( p_val );
 ```
+
 - where i goes from 0 to pI_size
 - of coures if with p_val < 0 the sequence will decrease
 - actually cst ( p_n ) and add ( p_m ) are short hands for the much more powerful "pol"-ynomial closure.
@@ -51,19 +66,25 @@ add ( p_val );
 - add ( p_m ) abbreviates pol ( [ 0, p_m ] )
 
 ### for creating an array of values computed by a polynomial
+
+
 ```
 pol ( pA_coeff );
 ```
+
 - as seen before u can create a linear sequence compute a polynomial on it to create an array
 - here pA_coeff is an array of the first n coefficients of the polynomial that should be applied
 
 ### for integrating all values of an array by a certain delta X and an offset of c
+
 ```
 intg ( dx = 1, c = 0 );
 ```
+
 ### for essential computings
 
-```
+
+`
 sSet ( a );
 sSqt ( a );
 sSqr ( a );
@@ -76,7 +97,7 @@ rSub ( a, b );
 rMul ( a, b );
 rDiv ( a, b );
 rPow ( a, b );
-```
+`
 
 ## how to
 ### create an array
@@ -112,11 +133,6 @@ var
 // five_zeros = [ 0, 0, 0, 0, 0 ]
 five_zeros = arr ( 5 ),
 
-<<<<<<< HEAD
-```
-
-###
-=======
 // four_ones = [ 1, 1, 1, 1 ]
 four_ones = arr( 4, cst ( 1 ) );
 
@@ -131,6 +147,7 @@ ten_teens = arr ( 10, add ( 10 ) ),
 // poly2 = [ 1, 4, 9, 16, 25 ]
 poly2 = arr ( 5, pol ( [ 1, 2, 1 ] ) );
 ```
+
 # Examples
-## create some 3-dim vectors for 
->>>>>>> 84467a1b62b06f0d5dd22844dc5fd77142cd8012
+## create some 3-dim vectors for
+
