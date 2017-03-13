@@ -50,7 +50,7 @@ function cum ( pBFct_fct, pA_src, s = 0 ) {
 
 	while ( ++ i < pA_src.length )
 
-		s = pBFct_fct( s, pA_src[ i ] );
+		s = pBFct_fct( pA_src[ i ], s );
 
 	return s;
 }

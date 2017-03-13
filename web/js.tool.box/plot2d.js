@@ -12,6 +12,9 @@ Plot2d = function ( cnvs_name ) {
 	this.clr  = "#000000"
 	this.clrs = [ ];
 
+	var
+	dis = this;
+
 	this.vcol = function ( col ) {
 
 		this.clr = col;
@@ -32,70 +35,145 @@ Plot2d = function ( cnvs_name ) {
 		this.cntxt.fillText( txt, x, y );
 	}
 
+	this.linestrip = function ( x, y ) {
+
+		this.cntxt.beginPath ( );
+
+		var
+		i = 0;
+
+		this.cntxt.moveTo ( x[ i ], this.cnvs.height - 1 + y[ i ] );
+
+		while ( ++ i < x.length )
+
+			this.cntxt.lineTo ( x[ i ], y[ i ] );
+
+		this.cntxt.stroke ( );
+	}
+
+	this.lines = function ( x, y ) {
+
+		this.cntxt.beginPath ( );
+
+		var
+		i = 0;
+
+		while ( i < x.length ) {
+
+			this.cntxt.moveTo ( x[ i ], this.cnvs.height - 1 + y[ i ] );
+
+			++ i;
+
+			this.cntxt.lineTo ( x[ i ], y[ i ] );
+
+			++ i;
+		}
+
+		this.cntxt.stroke ( );
+	}
+
+	this.vlines = function ( x ) {
+
+		this.cntxt.beginPath ( );
+
+		cum (
+
+			function ( x, s ) {
+
+				dis.cntxt.moveTo ( x, 0 );
+
+				dis.cntxt.lineTo ( x, dis.cnvs.height - 1 );
+			},
+			x
+		);
+
+		this.cntxt.stroke ( );
+	}
+
+	this.hlines = function ( y ) {
+
+		this.cntxt.beginPath ( );
+
+		cum (
+
+			function ( y, s ) {
+
+				dis.cntxt.moveTo ( 0, dis.cnvs.height - 1 - y );
+
+				dis.cntxt.lineTo ( dis.cnvs.width - 1, dis.cnvs.height - 1 - y );
+			},
+			y
+		);
+
+		this.cntxt.stroke ( );
+	}
+
+	this.vcoords = function ( x, dx ) {
+
+		cum (
+
+			function ( x, s ) {
+
+				dis.text ( ( x / dx + dis.xmin ).toExponential( 0 ).toString ( ), x + 1, dis.cnvs.height - 1 );
+			},
+			x
+		);
+	}
+
+	this.hcoords = function ( y, dy ) {
+
+		cum (
+
+			function ( y, s ) {
+
+				dis.text ( ( y / dy + dis.ymin ).toExponential( 0 ).toString ( ), 1, dis.cnvs.height - 1 - y - 1 );
+			},
+			y
+		);
+	}
+
 	this.grid = function ( ) {
+
+		this.cntxt.strokeStyle = this.clr;
 
 		var
 		xint = this.xmax - this.xmin,
 		yint = this.ymax - this.ymin,
-		xlog10 = parseInt ( Math.log ( xint ) / Math.log ( 10 ) - 0 ),
-		ylog10 = parseInt ( Math.log ( yint ) / Math.log ( 10 ) - 1 ),
+		log10 = 1. / Math.LN10,
+		xlog10 = Math.floor ( log10 * Math.log ( .05 * xint ) ),
+		ylog10 = Math.floor ( log10 * Math.log ( .05 * yint ) ),
+		dx_ = Math.pow ( 10, xlog10 ),
+		dy_ = Math.pow ( 10, ylog10 ),
 		dx = ( this.cnvs.width - 1 ) / xint,
-		dy = ( this.cnvs.height - 1 ) / yint;
+		dy = ( this.cnvs.height - 1 ) / yint,
+		xbeg_ = Math.ceil ( this.xmin / dx_ ),
+		xend_ = Math.ceil ( this.xmax / dx_ ),
+		ybeg_ = Math.ceil ( this.ymin / dy_ ),
+		yend_ = Math.ceil ( this.ymax / dy_ ),
+		x_    = rel( rMul, rel ( rSub, rel ( rMul, seq ( sSet, xbeg_, xend_ ), dx_ ), this.xmin ), dx ),
+		y_    = rel( rMul, rel ( rSub, rel ( rMul, seq ( sSet, ybeg_, yend_ ), dy_ ), this.ymin ), dy );
 
-		this.cntxt.strokeStyle = this.clr;
-		var
+		this.hlines( y_ );
+		this.vlines( x_ );
 
-		x = this.xmin,
-		dx_ = Math.pow ( 10, xlog10 );
+		this.cntxt.strokeStyle = "#d0d0d0"
 
-		while ( x < 0 ) {
+		dx_ *= 10;
+		dy_ *= 10;
 
-			this.cntxt.beginPath ( );
-			this.cntxt.moveTo ( -dx * x, 0 );
-			this.cntxt.lineTo ( -dx * x, this.cnvs.height - 1 );
-			this.cntxt.stroke ( );
-			this.text ( ( -x + this.xmin ).toExponential( 1 ).toString ( ), -dx * x + 1, this.cnvs.height - 1 );
-			x += dx_;
-		}
+		xbeg_ = Math.ceil ( this.xmin / dx_ );
+		xend_ = Math.ceil ( this.xmax / dx_ );
+		ybeg_ = Math.ceil ( this.ymin / dy_ );
+		yend_ = Math.ceil ( this.ymax / dy_ );
+		x__   =
+		x_    = rel( rMul, rel ( rSub, rel ( rMul, seq ( sSet, xbeg_, xend_ ), dx_ ), this.xmin ), dx );
+		y_    = rel( rMul, rel ( rSub, rel ( rMul, seq ( sSet, ybeg_, yend_ ), dy_ ), this.ymin ), dy );
 
-		x = this.xmin;
+		this.hlines( y_ );
+		this.vlines( x_ );
 
-		while ( -x < ( this.xmax - this.xmin ) ) {
-
-			this.cntxt.beginPath ( );
-			this.cntxt.moveTo ( -dx * x, 0 );
-			this.cntxt.lineTo ( -dx * x, this.cnvs.height - 1 );
-			this.cntxt.stroke ( );
-			this.text ( ( -x + this.xmin ).toExponential( 1 ).toString ( ), -dx * x + 1, this.cnvs.height - 1 );
-			x -= dx_;
-		}
-
-		var
-		y = this.ymin,
-		dy_ = Math.pow ( 10, ylog10 );
-
-		while ( y < 0 ) {
-
-			this.cntxt.beginPath ( );
-			this.cntxt.moveTo ( 0, this.cnvs.height - 1 + dy * y );
-			this.cntxt.lineTo ( this.cnvs.width, this.cnvs.height - 1 + dy * y );
-			this.cntxt.stroke ( );
-			this.text ( ( -y + this.ymin ).toExponential( 1 ).toString ( ), 1, this.cnvs.height - 1 + dy * y - 1 );
-			y += dy_;
-		}
-
-		y = this.ymin;
-
-		while ( -y < ( this.ymax - this.ymin ) ) {
-
-			this.cntxt.beginPath ( );
-			this.cntxt.moveTo ( 0, this.cnvs.height - 1 + dy * y );
-			this.cntxt.lineTo ( this.cnvs.width, this.cnvs.height - 1 + dy * y );
-			this.cntxt.stroke ( );
-			this.text ( ( -y + this.ymin ).toExponential( 1 ).toString ( ), 1, this.cnvs.height - 1 + dy * y - 1 );
-			y -= dy_;
-		}
-
+		this.hcoords( y_, dy );
+		this.vcoords( x_, dx );
 	}
 
 	this.addYX = function ( y = seq ( pol ( [ +1, -1, +1, -1, +1, -1 ] ), -10, 11 ) , x = seq ( pol ( [ 0, 1. ] ), 0, 21 ) ) {
