@@ -56,9 +56,10 @@
 
 				var
 				mT = plot2d.cntxt.measureText ( "SIMPLE-2D-PLOT" )
-				w = mT.width;
+				w = mT.width,
+				h = 16;
 
-				plot2d.text ( "SIMPLE-2D-PLOT", plot2d.cnvs.width / 2 - w, plot2d.cnvs.height / 2 );
+				plot2d.text ( "SIMPLE-2D-PLOT", ( plot2d.cnvs.width - w ) / 2, ( plot2d.cnvs.height + h ) / 2 );
 
 				var
 				maxY0 = cum ( rMax, y0 ),
