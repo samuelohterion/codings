@@ -114,7 +114,7 @@ Plot2d = function ( cnvs_name ) {
 
 			function ( x, s ) {
 
-				dis.text ( ( x / dx + dis.xmin ).toExponential( 0 ).toString ( ), x + 1, dis.cnvs.height - 1 );
+				dis.text ( ( x / dx + dis.xmin ).toExponential( 1 ).toString ( ), x + 1, dis.cnvs.height - 1 );
 			},
 			x
 		);
@@ -126,7 +126,7 @@ Plot2d = function ( cnvs_name ) {
 
 			function ( y, s ) {
 
-				dis.text ( ( y / dy + dis.ymin ).toExponential( 0 ).toString ( ), 1, dis.cnvs.height - 1 - y - 1 );
+				dis.text ( ( y / dy + dis.ymin ).toExponential( 1 ).toString ( ), 1, dis.cnvs.height - 2 - y );
 			},
 			y
 		);
