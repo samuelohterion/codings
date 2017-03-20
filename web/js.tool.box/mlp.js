@@ -35,7 +35,7 @@ function MLP ( pAI_sizes = [ 2, 3, 1 ], pD_min = 0, pD_max = 1, pD_eta = .1 ) {
 		var
 		one  = function ( i ) { return 1; },
 		zero = function ( i ) { return 0; },
-		rnd  = function ( i ) { return dis.min + dis.rng * Math.random ( ); },
+		rnd  = function ( i ) { return .5 * ( dis.min + dis.max ) + .01 * dis.rng * Math.random ( ); },
 		l    = 0,
 		szs = dis.szs[ l ];
 
@@ -139,6 +139,58 @@ function MLP ( pAI_sizes = [ 2, 3, 1 ], pD_min = 0, pD_max = 1, pD_eta = .1 ) {
 				}
 			}
 		}
+	}
+
+	this.plot = function ( cnvs, cntxt, xmin, ymin, xmax, ymax ) {
+
+		/*var
+		gradient = context.createRadialGradient(175,75,0,175,75,100);
+        gradient.addColorStop(0, 'white');
+        gradient.addColorStop(1, 'rgb(255,125,125)');
+
+        context.beginPath();
+        context.fillStyle = gradient;*/
+
+
+		var
+		w  = cnvs.width * ( xmax - xmin ),
+		h  = cnvs.height * ( ymax - ymin ),
+		xb = xmin * cnvs.width,
+		xe = xmax * cnvs.width,
+		yb = ymin * cnvs.height,
+		ye = ymax * cnvs.height,
+		ll = this.szs.length,
+		dh = h / ( ll ),
+		ho = dh / 2;
+
+		for ( var l = 0; l < ll; ++ l ) {
+
+			var
+			o  = this.o[ l ],
+			ol = l + 1 < ll ? o.length - 1 : o.length,
+			dw = w / ( ol ),
+			wo = dw / 2;
+
+			for ( var i = 0; i < ol; ++ i ) {
+
+				cntxt.beginPath( );
+				cntxt.arc ( xb + wo + dw * i, cnvs.height - 1 - yb - ho - l * dh, 10, 0, Math.PI * 2, false );
+
+				var
+				r = Math.floor( this.o[ l ][ i ] * 255 );
+				g = Math.floor ( .125 * r ),
+				b = Math.floor ( 32 - g ),
+				cl = "rgb(" + r + "," + g + "," + b + ")";
+
+				cntxt.fillStyle = cl;
+
+				cntxt.fill ( );
+				cntxt.lineWidth = 2;
+				cntxt.strokeStyle = 'gray';
+				cntxt.stroke ( );
+			}
+		}
+
 	}
 
 	create ( pAI_sizes, pD_min, pD_max, pD_eta );

@@ -130,6 +130,8 @@ function pol ( pA_coeff ) {
 
 function sSet ( a ) { return a; }
 
+function sNeg ( a ) { return -a; }
+
 function sSqt ( a ) { return Math.sqrt ( a ); }
 
 function sSqr ( a ) { return a * a; }
@@ -137,6 +139,12 @@ function sSqr ( a ) { return a * a; }
 function sExp ( a ) { return Math.exp ( a ); }
 
 function sLog ( a ) { return Math.log ( a ); }
+
+function sSin ( a ) { return Math.sin ( a ); }
+
+function sCos ( a ) { return Math.cos ( a ); }
+
+function sTan ( a ) { return Math.tan ( a ); }
 
 function rMin ( a, b ) { return a < b ? a : b; }
 
