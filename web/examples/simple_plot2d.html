@@ -40,24 +40,27 @@
 				var
 				plot2d = new Plot2d ( "cnvs" );
 
-				plot2d.vcol ( "#ff0000");
+				plot2d.fcol ( "#ff0000");
 				plot2d.addYX ( y0, x );
 
-				plot2d.vcol ( "#00ff00");
+				plot2d.fcol ( "#00ff00");
 				plot2d.addYX ( y1, x );
 
-				plot2d.vcol ( "#0000ff");
+				plot2d.fcol ( "#0000ff");
 				plot2d.addYX ( y2, x );
 
-				plot2d.vcol ( "#f0f0f0" );
+				plot2d.fnt ( "12pt Calibri" );
+				plot2d.fcol ( "#e0e0e0", "#f0f0f0" );
 				plot2d.grid ( );
 
 				plot2d.draw ( );
 
+				plot2d.fnt ( "48pt Calibri" );
+
 				var
 				mT = plot2d.cntxt.measureText ( "SIMPLE-2D-PLOT" )
-				w = mT.width,
-				h = 16;
+				w  = mT.width,
+				h  = 48;
 
 				plot2d.text ( "SIMPLE-2D-PLOT", ( plot2d.cnvs.width - w ) / 2, ( plot2d.cnvs.height + h ) / 2 );
 

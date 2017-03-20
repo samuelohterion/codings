@@ -54,24 +54,24 @@
 			var
 			plot2d = new Plot2d ( "cnvs1" );
 
-			plot2d.vcol ( "#808080");
+			plot2d.fcol ( "#808080");
 			plot2d.addYX ( fun ( pol ( [ +0, 0, 1/(2*20), 0, -1/(24*240) ] ), x ), x );
 
-			plot2d.vcol ( "#ff0000");
+			plot2d.fcol ( "#ff0000");
 			plot2d.addYX ( prob1_dot, x );
 			plot2d.addYX ( prob1, x );
-			plot2d.vcol ( "#00ff00");
+			plot2d.fcol ( "#00ff00");
 			plot2d.addYX ( prob2_dot, x );
-			plot2d.vcol ( "#ffff00");
+			plot2d.fcol ( "#ffff00");
 			plot2d.addYX ( prob2, x );
-			plot2d.vcol ( "#0000ff");
+			plot2d.fcol ( "#0000ff");
 			plot2d.addYX ( prob3_dot, x );
 			plot2d.addYX ( prob3, x );
 
-			plot2d.vcol ( "#000080");
+			plot2d.fcol ( "#000080");
 			plot2d.addYX ( fun ( function ( i ) { return 5. * Math.sin ( 10 * i ) / ( 10 * i ); }, x ), x );
 
-			plot2d.vcol ( "#e0e0e0" );
+			plot2d.fcol ( "#e0e0e0" );
 			plot2d.grid ( );
 
 			plot2d.draw ( );

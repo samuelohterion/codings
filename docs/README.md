@@ -196,16 +196,16 @@ poly2 = arr ( 5, pol ( [ 1, 2, 1 ] ) );
 				var
 				plot2d = new Plot2d ( "cnvs" );
 
-				plot2d.vcol ( "#ff0000");
+				plot2d.fcol ( "#ff0000");
 				plot2d.addYX ( y0, x );
 
-				plot2d.vcol ( "#00ff00");
+				plot2d.fcol ( "#00ff00");
 				plot2d.addYX ( y1, x );
 
-				plot2d.vcol ( "#0000ff");
+				plot2d.fcol ( "#0000ff");
 				plot2d.addYX ( y2, x );
 
-				plot2d.vcol ( "#f0f0f0" );
+				plot2d.fcol ( "#f0f0f0" );
 				plot2d.grid ( );
 
 				plot2d.draw ( );
