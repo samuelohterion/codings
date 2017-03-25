@@ -234,4 +234,4 @@ poly2 = arr ( 5, pol ( [ 1, 2, 1 ] ) );
 </html>
 ```
 
-[examples](index.html)
+[examples](examples/mlp/mlp.html)
