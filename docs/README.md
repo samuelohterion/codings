@@ -234,6 +234,6 @@ poly2 = arr ( 5, pol ( [ 1, 2, 1 ] ) );
 </html>
 ```
 
-<a href="../web/examples/simple_plot2d.html">
+<a href="https://github.com/samuelohterion/codings/web/examples/simple_plot2d.html">
 	simple plot 2d
 </a>
