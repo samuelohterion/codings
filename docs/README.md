@@ -233,3 +233,7 @@ poly2 = arr ( 5, pol ( [ 1, 2, 1 ] ) );
 	</body>
 </html>
 ```
+
+<a href="../codings/web/examples/simple_plot2d.html">
+	simple plot 2d
+</a>
